@@ -1,0 +1,26 @@
+{
+  "name": "dash-class",
+  "description": "A simple light-weight utility module for the class attribute.",
+  "main": "dist/_class.js",
+  "authors": [
+    "Achilles Rasquinha <achillesrasquinha@gmail.com> (http://achillesrasquinha.github.io)"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "javascript",
+    "simple",
+    "light-weight",
+    "util",
+    "utility",
+    "class",
+    "helper",
+    "module",
+    "dash",
+    "attribute"
+  ],
+  "homepage": "https://github.com/achillesrasquinha/dash-class#readme",
+  "ignore": [
+    "**/.*",
+    "node_modules"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "name": "dash-class",
+  "version": "1.0.0",
+  "description": "A simple light-weight javascript utility for the class attribute.",
+  "main": "dist/_class.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/achillesrasquinha/dash-class.git"
+  },
+  "keywords": [
+    "javascript",
+    "simple",
+    "light-weight",
+    "util",
+    "utility",
+    "class",
+    "helper",
+    "module",
+    "dash",
+    "attribute"
+  ],
+  "author": "Achilles Rasquinha <achillesrasquinha@gmail.com> (http://achillesrasquinha.github.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/achillesrasquinha/dash-class/issues"
+  },
+  "homepage": "https://github.com/achillesrasquinha/dash-class#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-beautify": "^2.0.0",
+    "gulp-jshint": "^2.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.4",
+    "jshint": "^2.9.2"
+  },
+  "dependencies": {}
+}
