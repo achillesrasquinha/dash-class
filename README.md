@@ -1,7 +1,7 @@
 # dash-class
 > A simple light-weight javascript utility for the class attribute.
 
-dash-class is a simple, light-weight javascript utility module for class attribute manipulation. These includes jQuery inspired `<x>Class` functions (`hasClass`, `addClass`, etc.), hence the name.
+dash-class is a simple, light-weight javascript utility module for class attribute manipulation. These include jQuery inspired `<x>Class` functions (`hasClass`, `addClass`, etc.), hence the name.
 
 ### Table of Contents
 * [Installation](#installation)
