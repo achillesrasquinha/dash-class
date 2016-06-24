@@ -1,6 +1,6 @@
 {
   "name": "dash-class",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A simple light-weight javascript utility for the class attribute.",
   "main": "dist/_class.js",
   "repository": {
