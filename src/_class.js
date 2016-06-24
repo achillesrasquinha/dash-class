@@ -1,9 +1,17 @@
 var _class     = _class || { };
 
 _class.get     = function (element) {
-    var clsss  = element.getAttribute('class') || '';
+    var clsss  = [ ];
 
-    return clsss === '' ? [] : clsss.split(/\s+/g);
+    if (element.nodeType === Node.ELEMENT_NODE)
+        if (element.getAttribute) {
+            var clss = element.getAttribute('class') || '';
+
+            if (clss !== '')
+                clsss  = clss.split(/\s+/g);
+        }
+
+    return clsss;
 };
 
 _class.has     = function (element, clss, all) {
@@ -11,13 +19,17 @@ _class.has     = function (element, clss, all) {
         all    = all === undefined ? true : all;
 
     if ( element.nodeType === Node.ELEMENT_NODE ) {
-        if (clss instanceof Array) {            
+        if (clss instanceof Array) {
+            var nhas = !has;
+
             clss.forEach(function (value) {
                 if ( all )
-                    has =  has && _class.has(element, value);
+                     has =  has && _class.has(element, value, all);
                 else
-                    has =  has || _class.has(element, value);
+                    nhas = nhas || _class.has(element, value, all);
             });
+
+            has = all ? has : nhas;
         }
         else
             if ( _class.get(element).indexOf(clss) === -1 )
@@ -44,27 +56,29 @@ _class.remove  = function (element, clss) {
         });
     else
         if(_class.has(element, clss)) {
-            var clsss = _class.get(element, clss);
-                clsss.splice(clsss.indexOf(clss), 1);
+            var clsss = _class.get(element);
+                clsss = clsss.filter(function (value) {
+                return value !== clss;
+            });
 
-            element.className  = "";
+            element.className = '';
 
             _class.add(element, clsss);
         }
 };
 
 _class.toggle  = function (element, clss, state) {
-    state      = state === undefined ? true : false;
+    state      = state === undefined ? true : state;
 
     if (!_class.has(element, clss) && state)
-         return _class.add(element, clss);
+        _class.add(element, clss);
     else
-         return _class.remove(element, clss);
+        _class.remove(element, clss);
 };
 
 _class.replace = function (element, clss) {
     for (var key in clss) {
-        _class.remove(element, key )
+        _class.remove(element, key );
         _class.add   (element, clss[key]);
     }
 };
