@@ -32,8 +32,11 @@ _class.has     = function (element, clss, all) {
             has = all ? has : nhas;
         }
         else
-            if ( _class.get(element).indexOf(clss) === -1 )
-                has = false;
+            if ( element.classList )
+                has = element.classList.contains(clss);
+            else
+                if ( _class.get(element).indexOf(clss) === -1 )
+                    has = false;
     }
 
     return has;
@@ -45,8 +48,11 @@ _class.add     = function (element, clss) {
             _class.add(element, value);
         });
     else
-        if(!_class.has(element, clss))
-            element.className += (element.className === '' ? '' : ' ') + clss;
+        if ( element.classList )
+            element.classList.add(clss);
+        else            
+            if(!_class.has(element, clss))
+                element.className += (_class.get(element).length > 0 ? ' ' : '') + clss;
 };
 
 _class.remove  = function (element, clss) {
@@ -55,16 +61,12 @@ _class.remove  = function (element, clss) {
             _class.remove(element, value);
         });
     else
-        if(_class.has(element, clss)) {
-            var clsss = _class.get(element);
-                clsss = clsss.filter(function (value) {
-                return value !== clss;
-            });
-
-            element.className = '';
-
-            _class.add(element, clsss);
-        }
+        if(_class.has(element, clss))
+            if ( element.classList )
+                element.classList.remove(clss);
+            else {
+                element.className = element.className.replace(new RegExp('' + clss + ''), ' ');
+            }
 };
 
 _class.toggle  = function (element, clss, state) {

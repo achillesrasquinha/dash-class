@@ -31,6 +31,9 @@ _class.has = function(element, clss, all) {
 
             has = all ? has : nhas;
         } else
+        if (element.classList)
+            has = element.classList.contains(clss);
+        else
         if (_class.get(element).indexOf(clss) === -1)
             has = false;
     }
@@ -44,8 +47,11 @@ _class.add = function(element, clss) {
             _class.add(element, value);
         });
     else
+    if (element.classList)
+        element.classList.add(clss);
+    else
     if (!_class.has(element, clss))
-        element.className += (element.className === '' ? '' : ' ') + clss;
+        element.className += (_class.get(element).length > 0 ? ' ' : '') + clss;
 };
 
 _class.remove = function(element, clss) {
@@ -54,16 +60,19 @@ _class.remove = function(element, clss) {
             _class.remove(element, value);
         });
     else
-    if (_class.has(element, clss)) {
-        var clsss = _class.get(element);
-        clsss = clsss.filter(function(value) {
-            return value !== clss;
-        });
+    if (_class.has(element, clss))
+        if (element.classList)
+            element.classList.remove(clss);
+        else {
+            var clsss = _class.get(element);
+            clsss = clsss.filter(function(value) {
+                return value !== clss;
+            });
 
-        element.className = '';
+            element.className = '';
 
-        _class.add(element, clsss);
-    }
+            _class.add(element, clsss);
+        }
 };
 
 _class.toggle = function(element, clss, state) {
